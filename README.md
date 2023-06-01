@@ -11,7 +11,7 @@ DicoGIS_network_analysis_2021-08-20.xls
 --------------
 neighbour network analysis
 
-Folder structure : 	
+## Folder structure : 	
 
 +---input
 
@@ -30,20 +30,20 @@ Folder structure :
 \---processing
 
     +---graph_analysis = compute neighbour network by distance threshold (pyQGIS 3 python script)
-    
+
     \---neighbour_network = extract nodes from shapefile network and compute node indicators (R scripts)
 
-Fields name description :
-Centrality measures
+##Fields name description :
+### Centrality measures
 documentation : https://dshizuka.github.io/networkanalysis/04_measuring.html
-degree = degree centrality
-clsnes = closeness centrality
-btwnes = betweenness centrality
-eigen = eigenvector centrality
+- degree = degree centrality
+- clsnes = closeness centrality
+- btwnes = betweenness centrality
+- eigen = eigenvector centrality
 
-community detection
+### community detection
 Documentation = https://dshizuka.github.io/networkanalysis/05_community.html
-btwnes_c = betweenness clustering
-louv_c = Louvain clustering
-greed_c = fastgreedy clustering
-walk_c = walktrap clustering
+- btwnes_c = betweenness clustering
+- louv_c = Louvain clustering
+- greed_c = fastgreedy clustering
+- walk_c = walktrap clustering
