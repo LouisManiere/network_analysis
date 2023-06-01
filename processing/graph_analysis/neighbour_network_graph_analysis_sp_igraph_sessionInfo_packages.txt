@@ -1,0 +1,183 @@
+neighbour_network_graph_analysis_sp_igraph.R
+
+SessionInfo
+
+R version 4.1.0 (2021-05-18)
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+Running under: Windows 10 x64 (build 19043)
+
+Matrix products: default
+
+locale:
+[1] LC_COLLATE=French_France.1252  LC_CTYPE=French_France.1252    LC_MONETARY=French_France.1252 LC_NUMERIC=C                   LC_TIME=French_France.1252    
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] shp2graph_0-5    rgdal_1.5-23     sp_1.4-5         igraph_1.2.6     forcats_0.5.1    stringr_1.4.0    dplyr_1.0.7      purrr_0.3.4      readr_1.4.0     
+[10] tidyr_1.1.3      tibble_3.1.2     ggplot2_3.3.5    tidyverse_1.3.1  tidygraph_1.2.0  sf_1.0-1         sfnetworks_0.5.2
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_1.0.7         lubridate_1.7.10   lattice_0.20-44    class_7.3-19       assertthat_0.2.1   utf8_1.2.1         R6_2.5.0           cellranger_1.1.0  
+ [9] backports_1.2.1    reprex_2.0.0       e1071_1.7-7        httr_1.4.2         pillar_1.6.1       rlang_0.4.11       readxl_1.3.1       rstudioapi_0.13   
+[17] foreign_0.8-81     munsell_0.5.0      proxy_0.4-26       broom_0.7.8        compiler_4.1.0     modelr_0.1.8       pkgconfig_2.0.3    tidyselect_1.1.1  
+[25] fansi_0.5.0        crayon_1.4.1       dbplyr_2.1.1       withr_2.4.2        grid_4.1.0         jsonlite_1.7.2     lwgeom_0.2-6       gtable_0.3.0      
+[33] lifecycle_1.0.0    DBI_1.1.1          magrittr_2.0.1     units_0.7-2        scales_1.1.1       KernSmooth_2.23-20 cli_3.0.1          stringi_1.6.2     
+[41] farver_2.1.0       fs_1.5.0           remotes_2.4.0      xml2_1.3.2         ellipsis_0.3.2     sfheaders_0.4.0    generics_0.1.0     vctrs_0.3.8       
+[49] tools_4.1.0        glue_1.4.2         hms_1.1.0          colorspace_2.0-2   maptools_1.1-1     classInt_0.4-3     rvest_1.0.0        haven_2.4.1  
+
+
+------------------------------------------------------------
+PackageDescription
+
+Package: sp
+Version: 1.4-5
+Title: Classes and Methods for Spatial Data
+Authors@R: c(person("Edzer", "Pebesma", role = c("aut", "cre"), email = "edzer.pebesma@uni-muenster.de"), person("Roger", "Bivand", role =
+                "aut", email = "Roger.Bivand@nhh.no"), person("Barry", "Rowlingson", role = "ctb"), person("Virgilio", "Gomez-Rubio", role =
+                "ctb"), person("Robert", "Hijmans", role = "ctb"), person("Michael", "Sumner", role = "ctb"), person("Don", "MacQueen", role =
+                "ctb"), person("Jim", "Lemon", role = "ctb"), person("Finn", "Lindgren", role = "ctb"), person("Josh", "O'Brien", role =
+                "ctb"), person("Joseph", "O'Rourke", role = "ctb"))
+Depends: R (>= 3.0.0), methods
+Imports: utils, stats, graphics, grDevices, lattice, grid
+Suggests: RColorBrewer, rgdal (>= 1.2-3), rgeos (>= 0.3-13), gstat, maptools, deldir
+Description: Classes and methods for spatial data; the classes document where the spatial location information resides, for 2D or 3D data.
+                Utility functions are provided, e.g. for plotting data as maps, spatial selection, as well as methods for retrieving
+                coordinates, for subsetting, print, summary, etc.
+License: GPL (>= 2)
+URL: https://github.com/edzer/sp/ https://edzer.github.io/sp/
+BugReports: https://github.com/edzer/sp/issues
+Collate: bpy.colors.R AAA.R Class-CRS.R CRS-methods.R Class-Spatial.R Spatial-methods.R projected.R Class-SpatialPoints.R
+                SpatialPoints-methods.R .....
+NeedsCompilation: yes
+Packaged: 2021-01-10 11:49:13 UTC; edzer
+Author: Edzer Pebesma [aut, cre], Roger Bivand [aut], Barry Rowlingson [ctb], Virgilio Gomez-Rubio [ctb], Robert Hijmans [ctb], Michael Sumner
+                [ctb], Don MacQueen [ctb], Jim Lemon [ctb], Finn Lindgren [ctb], Josh O'Brien [ctb], Joseph O'Rourke [ctb]
+Maintainer: Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+Repository: CRAN
+Date/Publication: 2021-01-10 13:10:02 UTC
+Built: R 4.1.0; x86_64-w64-mingw32; 2021-07-10 23:12:37 UTC; windows
+
+------------------------------------------------------------
+Package: rgdal
+Title: Bindings for the 'Geospatial' Data Abstraction Library
+Version: 1.5-23
+Date: 2021-02-03
+Depends: R (>= 3.5.0), methods, sp (>= 1.1-0)
+Imports: grDevices, graphics, stats, utils
+LinkingTo: sp
+Suggests: knitr, DBI, RSQLite, maptools, mapview, rmarkdown, curl, rgeos
+NeedsCompilation: yes
+Description: Provides bindings to the 'Geospatial' Data Abstraction Library ('GDAL') (>= 1.11.4) and access to projection/transformation
+                operations from the 'PROJ' library. Use is made of classes defined in the 'sp' package. Raster and vector map data can be
+                imported into R, and raster and vector 'sp' objects exported. The 'GDAL' and 'PROJ' libraries are external to the package, and,
+                when installing the package from source, must be correctly installed first; it is important that 'GDAL' < 3 be matched with
+                'PROJ' < 6. From 'rgdal' 1.5-8, installed with to 'GDAL' >=3, 'PROJ' >=6 and 'sp' >= 1.4, coordinate reference systems use
+                'WKT2_2019' strings, not 'PROJ' strings. 'Windows' and 'macOS' binaries (including 'GDAL', 'PROJ' and their dependencies) are
+                provided on 'CRAN'.
+Authors@R: c( person("Roger", "Bivand", role = c("cre", "aut"), email = "Roger.Bivand@nhh.no", comment=c(ORCID="0000-0003-2392-6140")),
+                person("Tim", "Keitt", role = "aut"), person("Barry", "Rowlingson", role = c("aut", "ctb")), person("Edzer", "Pebesma", role =
+                "ctb"), person("Michael", "Sumner", role = "ctb"), person("Robert", "Hijmans", role = "ctb"), person("Daniel", "Baston", role =
+                "ctb"), person("Even", "Rouault", role = c("cph", "ctb")), person("Frank", "Warmerdam", role = c("cph", "ctb")),
+                person("Jeroen", "Ooms", role = "ctb"), person("Colin", "Rundel", role = "ctb"))
+License: GPL (>= 2)
+URL: http://rgdal.r-forge.r-project.org, https://gdal.org, https://proj.org, https://r-forge.r-project.org/projects/rgdal/
+SystemRequirements: PROJ (>= 4.8.0, https://proj.org/download.html) and GDAL (>= 1.11.4, https://gdal.org/download.html), with versions either
+                (A) PROJ < 6 and GDAL < 3 or (B) PROJ >= 6 and GDAL >= 3. For degraded PROJ >= 6 and GDAL < 3, use the configure argument
+                '--with-proj_api="proj_api.h"'.
+VignetteBuilder: knitr
+RoxygenNote: 6.1.1
+Packaged: 2021-02-02 20:39:29 UTC; rsb
+Author: Roger Bivand [cre, aut] (<https://orcid.org/0000-0003-2392-6140>), Tim Keitt [aut], Barry Rowlingson [aut, ctb], Edzer Pebesma [ctb],
+                Michael Sumner [ctb], Robert Hijmans [ctb], Daniel Baston [ctb], Even Rouault [cph, ctb], Frank Warmerdam [cph, ctb], Jeroen
+                Ooms [ctb], Colin Rundel [ctb]
+Maintainer: Roger Bivand <Roger.Bivand@nhh.no>
+Repository: CRAN
+Date/Publication: 2021-02-03 10:50:03 UTC
+Built: R 4.1.0; x86_64-w64-mingw32; 2021-07-10 23:14:07 UTC; windows
+
+------------------------------------------------------------
+Package: shp2graph
+Version: 0-5
+Date: 2018-08-20
+Title: Convert a SpatialLinesDataFrame Object to an 'igraph'-Class Object
+Author: Binbin Lu
+Maintainer: Binbin Lu <lubinbin220@gmail.com>
+Depends: R (>= 3.0.0),igraph
+Imports: methods, maptools,sp
+Description: Functions for converting network data from a SpatialLinesDataFrame object to an 'igraph'-Class object.
+License: GPL (>= 2)
+Repository: CRAN
+NeedsCompilation: yes
+Packaged: 2018-08-20 08:30:25 UTC; Administrator
+Date/Publication: 2018-08-20 09:20:03 UTC
+Built: R 4.1.0; x86_64-w64-mingw32; 2021-07-11 03:05:18 UTC; windows
+
+------------------------------------------------------------
+Package: igraph
+Version: 1.2.6
+Title: Network Analysis and Visualization
+Author: See AUTHORS file.
+Maintainer: Gábor Csárdi <csardi.gabor@gmail.com>
+Description: Routines for simple graphs and network analysis. It can handle large graphs very well and provides functions for generating random
+                and regular graphs, graph visualization, centrality methods and much more.
+Depends: methods
+Imports: graphics, grDevices, magrittr, Matrix, pkgconfig (>= 2.0.0), stats, utils
+Suggests: ape, digest, graph, igraphdata, rgl, scales, stats4, tcltk, testthat, withr
+License: GPL (>= 2)
+URL: https://igraph.org
+SystemRequirements: gmp (optional), libxml2 (optional), glpk (optional)
+BugReports: https://github.com/igraph/igraph/issues
+Encoding: UTF-8
+RoxygenNote: 7.1.1
+Collate: 'adjacency.R' 'auto.R' 'assortativity.R' 'attributes.R' 'basic.R' 'bipartite.R' 'centrality.R' 'centralization.R' 'cliques.R' .....
+NeedsCompilation: yes
+Packaged: 2020-10-06 10:36:22 UTC; gaborcsardi
+Repository: CRAN
+Date/Publication: 2020-10-06 12:40:05 UTC
+Built: R 4.1.0; i386-w64-mingw32; 2021-07-11 01:07:43 UTC; windows
+
+------------------------------------------------------------
+Package: sf
+Version: 1.0-1
+Title: Simple Features for R
+Authors@R: c(person(given = "Edzer", family = "Pebesma", role = c("aut", "cre"), email = "edzer.pebesma@uni-muenster.de", comment = c(ORCID =
+                "0000-0001-8049-7069")), person(given = "Roger", family = "Bivand", role = "ctb", comment = c(ORCID = "0000-0003-2392-6140")),
+                person(given = "Etienne", family = "Racine", role = "ctb"), person(given = "Michael", family = "Sumner", role = "ctb"),
+                person(given = "Ian", family = "Cook", role = "ctb"), person(given = "Tim", family = "Keitt", role = "ctb"), person(given =
+                "Robin", family = "Lovelace", role = "ctb"), person(given = "Hadley", family = "Wickham", role = "ctb"), person(given =
+                "Jeroen", family = "Ooms", role = "ctb", comment = c(ORCID = "0000-0002-4035-0289")), person(given = "Kirill", family =
+                "M\u00fcller", role = "ctb"), person(given = "Thomas Lin", family = "Pedersen", role = "ctb"), person(given = "Dan", family =
+                "Baston", role = "ctb"), person(given = "Dewey", family = "Dunnington", role = "ctb", comment = c(ORCID =
+                "0000-0002-9415-4582")) )
+Description: Support for simple features, a standardized way to encode spatial vector data. Binds to 'GDAL' for reading and writing data, to
+                'GEOS' for geometrical operations, and to 'PROJ' for projection conversions and datum transformations. Uses by default the 's2'
+                package for spherical geometry operations on ellipsoidal (long/lat) coordinates.
+License: GPL-2 | MIT + file LICENSE
+URL: https://r-spatial.github.io/sf/, https://github.com/r-spatial/sf/
+BugReports: https://github.com/r-spatial/sf/issues/
+Depends: methods, R (>= 3.3.0)
+Imports: classInt (>= 0.4-1), DBI (>= 0.8), graphics, grDevices, grid, magrittr, Rcpp (>= 0.12.18), s2 (>= 1.0.5), stats, tools, units (>=
+                0.6-0), utils
+Suggests: blob, covr, dplyr (>= 0.8-3), ggplot2, knitr, lwgeom (>= 0.2-1), maps, mapview, microbenchmark, odbc, pillar, pool, raster, rgdal,
+                rgeos, rlang, rmarkdown, RPostgres (>= 1.1.0), RPostgreSQL, RSQLite, sp (>= 1.2-4), spatstat (>= 2.0-1), spatstat.geom,
+                spatstat.core, spatstat.linnet, spatstat.utils, stars (>= 0.2-0), terra, testthat, tibble (>= 1.4.1), tidyr (>= 1.0-0),
+                tidyselect (>= 1.0.0), tmap (>= 2.0), vctrs, wk
+LinkingTo: Rcpp
+VignetteBuilder: knitr
+Encoding: UTF-8
+RoxygenNote: 7.1.1
+SystemRequirements: C++11, GDAL (>= 2.0.1), GEOS (>= 3.4.0), PROJ (>= 4.8.0), sqlite3
+Collate: 'RcppExports.R' 'init.R' 'crs.R' 'bbox.R' 'read.R' 'db.R' 'sfc.R' 'sfg.R' 'sf.R' 'bind.R' 'wkb.R' 'wkt.R' 'plot.R' 'geom-measures.R'
+                .....
+NeedsCompilation: yes
+Packaged: 2021-06-28 09:39:50 UTC; edzer
+Author: Edzer Pebesma [aut, cre] (<https://orcid.org/0000-0001-8049-7069>), Roger Bivand [ctb] (<https://orcid.org/0000-0003-2392-6140>),
+                Etienne Racine [ctb], Michael Sumner [ctb], Ian Cook [ctb], Tim Keitt [ctb], Robin Lovelace [ctb], Hadley Wickham [ctb], Jeroen
+                Ooms [ctb] (<https://orcid.org/0000-0002-4035-0289>), Kirill Müller [ctb], Thomas Lin Pedersen [ctb], Dan Baston [ctb], Dewey
+                Dunnington [ctb] (<https://orcid.org/0000-0002-9415-4582>)
+Maintainer: Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+Repository: CRAN
+Date/Publication: 2021-06-29 04:40:02 UTC
+Built: R 4.1.0; x86_64-w64-mingw32; 2021-07-11 01:09:07 UTC; windows

@@ -1,0 +1,191 @@
+neighbour_network_graph_analysis_sfnetworks.R
+
+SessionInfo
+
+R version 4.1.0 (2021-05-18)
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+Running under: Windows 10 x64 (build 19043)
+
+Matrix products: default
+
+locale:
+[1] LC_COLLATE=French_France.1252  LC_CTYPE=French_France.1252    LC_MONETARY=French_France.1252 LC_NUMERIC=C                   LC_TIME=French_France.1252    
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] igraph_1.2.6     forcats_0.5.1    stringr_1.4.0    dplyr_1.0.7      purrr_0.3.4      readr_1.4.0      tidyr_1.1.3      tibble_3.1.2     ggplot2_3.3.5   
+[10] tidyverse_1.3.1  tidygraph_1.2.0  sf_1.0-1         sfnetworks_0.5.2
+
+loaded via a namespace (and not attached):
+ [1] tidyselect_1.1.1   remotes_2.4.0      haven_2.4.1        colorspace_2.0-2   vctrs_0.3.8        generics_0.1.0     utf8_1.2.1         rlang_0.4.11      
+ [9] e1071_1.7-7        pillar_1.6.1       glue_1.4.2         withr_2.4.2        DBI_1.1.1          dbplyr_2.1.1       modelr_0.1.8       readxl_1.3.1      
+[17] lifecycle_1.0.0    munsell_0.5.0      gtable_0.3.0       cellranger_1.1.0   rvest_1.0.0        class_7.3-19       fansi_0.5.0        broom_0.7.8       
+[25] Rcpp_1.0.7         KernSmooth_2.23-20 scales_1.1.1       backports_1.2.1    classInt_0.4-3     lwgeom_0.2-6       jsonlite_1.7.2     farver_2.1.0      
+[33] fs_1.5.0           hms_1.1.0          stringi_1.6.2      grid_4.1.0         cli_3.0.1          tools_4.1.0        magrittr_2.0.1     proxy_0.4-26      
+[41] crayon_1.4.1       sfheaders_0.4.0    pkgconfig_2.0.3    ellipsis_0.3.2     xml2_1.3.2         reprex_2.0.0       lubridate_1.7.10   rstudioapi_0.13   
+[49] assertthat_0.2.1   httr_1.4.2         R6_2.5.0           units_0.7-2        compiler_4.1.0 
+
+
+------------------------------------------------------------
+PackageDescription
+
+Package: sfnetworks
+Title: Tidy Geospatial Networks
+Version: 0.5.2
+Authors@R: c(person(given = "Lucas", family = "van der Meer", role = c("aut", "cre"), email = "luukvandermeer@live.nl", comment = c(ORCID =
+                "0000-0001-6336-8628")), person(given = "Lorena", family = "Abad", role = "aut", email = "lore.abad6@gmail.com", comment =
+                c(ORCID = "0000-0003-0554-734X")), person(given = "Andrea", family = "Gilardi", role = "aut", email =
+                "andrea.gilardi@unimib.it", comment = c(ORCID = "0000-0002-9424-7439")), person(given = "Robin", family = "Lovelace", role =
+                "aut", email = "r.lovelace@leeds.ac.uk", comment = c(ORCID = "0000-0001-5679-6536")))
+Maintainer: Lucas van der Meer <luukvandermeer@live.nl>
+Description: Provides a tidy approach to spatial network analysis, in the form of classes and functions that enable a seamless interaction
+                between the network analysis package 'tidygraph' and the spatial analysis package 'sf'.
+License: Apache License (>= 2)
+URL: https://luukvdmeer.github.io/sfnetworks/, https://github.com/luukvdmeer/sfnetworks
+BugReports: https://github.com/luukvdmeer/sfnetworks/issues/
+Depends: R (>= 3.6)
+Imports: crayon, dplyr, graphics, igraph, lwgeom, rlang, sf, sfheaders, tibble, tidygraph, units, utils
+Suggests: dbscan, fansi, ggplot2 (>= 3.0.0), knitr, rmarkdown, s2 (>= 1.0.1), spatstat.geom, spatstat.linnet, spatstat (>= 2.0.0), testthat,
+                tidyverse, TSP
+VignetteBuilder: knitr
+ByteCompile: true
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
+NeedsCompilation: no
+Packaged: 2021-05-13 19:10:38 UTC; rstudio
+Author: Lucas van der Meer [aut, cre] (<https://orcid.org/0000-0001-6336-8628>), Lorena Abad [aut] (<https://orcid.org/0000-0003-0554-734X>),
+                Andrea Gilardi [aut] (<https://orcid.org/0000-0002-9424-7439>), Robin Lovelace [aut] (<https://orcid.org/0000-0001-5679-6536>)
+Repository: CRAN
+Date/Publication: 2021-05-13 19:40:02 UTC
+Built: R 4.1.0; ; 2021-07-11 07:48:16 UTC; windows
+
+------------------------------------------------------------ 
+Package: sf
+Version: 1.0-1
+Title: Simple Features for R
+Authors@R: c(person(given = "Edzer", family = "Pebesma", role = c("aut", "cre"), email = "edzer.pebesma@uni-muenster.de", comment = c(ORCID =
+                "0000-0001-8049-7069")), person(given = "Roger", family = "Bivand", role = "ctb", comment = c(ORCID = "0000-0003-2392-6140")),
+                person(given = "Etienne", family = "Racine", role = "ctb"), person(given = "Michael", family = "Sumner", role = "ctb"),
+                person(given = "Ian", family = "Cook", role = "ctb"), person(given = "Tim", family = "Keitt", role = "ctb"), person(given =
+                "Robin", family = "Lovelace", role = "ctb"), person(given = "Hadley", family = "Wickham", role = "ctb"), person(given =
+                "Jeroen", family = "Ooms", role = "ctb", comment = c(ORCID = "0000-0002-4035-0289")), person(given = "Kirill", family =
+                "M\u00fcller", role = "ctb"), person(given = "Thomas Lin", family = "Pedersen", role = "ctb"), person(given = "Dan", family =
+                "Baston", role = "ctb"), person(given = "Dewey", family = "Dunnington", role = "ctb", comment = c(ORCID =
+                "0000-0002-9415-4582")) )
+Description: Support for simple features, a standardized way to encode spatial vector data. Binds to 'GDAL' for reading and writing data, to
+                'GEOS' for geometrical operations, and to 'PROJ' for projection conversions and datum transformations. Uses by default the 's2'
+                package for spherical geometry operations on ellipsoidal (long/lat) coordinates.
+License: GPL-2 | MIT + file LICENSE
+URL: https://r-spatial.github.io/sf/, https://github.com/r-spatial/sf/
+BugReports: https://github.com/r-spatial/sf/issues/
+Depends: methods, R (>= 3.3.0)
+Imports: classInt (>= 0.4-1), DBI (>= 0.8), graphics, grDevices, grid, magrittr, Rcpp (>= 0.12.18), s2 (>= 1.0.5), stats, tools, units (>=
+                0.6-0), utils
+Suggests: blob, covr, dplyr (>= 0.8-3), ggplot2, knitr, lwgeom (>= 0.2-1), maps, mapview, microbenchmark, odbc, pillar, pool, raster, rgdal,
+                rgeos, rlang, rmarkdown, RPostgres (>= 1.1.0), RPostgreSQL, RSQLite, sp (>= 1.2-4), spatstat (>= 2.0-1), spatstat.geom,
+                spatstat.core, spatstat.linnet, spatstat.utils, stars (>= 0.2-0), terra, testthat, tibble (>= 1.4.1), tidyr (>= 1.0-0),
+                tidyselect (>= 1.0.0), tmap (>= 2.0), vctrs, wk
+LinkingTo: Rcpp
+VignetteBuilder: knitr
+Encoding: UTF-8
+RoxygenNote: 7.1.1
+SystemRequirements: C++11, GDAL (>= 2.0.1), GEOS (>= 3.4.0), PROJ (>= 4.8.0), sqlite3
+Collate: 'RcppExports.R' 'init.R' 'crs.R' 'bbox.R' 'read.R' 'db.R' 'sfc.R' 'sfg.R' 'sf.R' 'bind.R' 'wkb.R' 'wkt.R' 'plot.R' 'geom-measures.R'
+                .....
+NeedsCompilation: yes
+Packaged: 2021-06-28 09:39:50 UTC; edzer
+Author: Edzer Pebesma [aut, cre] (<https://orcid.org/0000-0001-8049-7069>), Roger Bivand [ctb] (<https://orcid.org/0000-0003-2392-6140>),
+                Etienne Racine [ctb], Michael Sumner [ctb], Ian Cook [ctb], Tim Keitt [ctb], Robin Lovelace [ctb], Hadley Wickham [ctb], Jeroen
+                Ooms [ctb] (<https://orcid.org/0000-0002-4035-0289>), Kirill Müller [ctb], Thomas Lin Pedersen [ctb], Dan Baston [ctb], Dewey
+                Dunnington [ctb] (<https://orcid.org/0000-0002-9415-4582>)
+Maintainer: Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+Repository: CRAN
+Date/Publication: 2021-06-29 04:40:02 UTC
+Built: R 4.1.0; x86_64-w64-mingw32; 2021-07-11 01:09:07 UTC; windows
+
+------------------------------------------------------------
+Package: tidygraph
+Type: Package
+Title: A Tidy API for Graph Manipulation
+Version: 1.2.0
+Authors@R: person(given = "Thomas Lin", family = "Pedersen", role = c("cre", "aut"), email = "thomasp85@gmail.com", comment = c(ORCID =
+                "0000-0002-5147-4711"))
+Maintainer: Thomas Lin Pedersen <thomasp85@gmail.com>
+Description: A graph, while not "tidy" in itself, can be thought of as two tidy data frames describing node and edge data respectively.
+                'tidygraph' provides an approach to manipulate these two virtual data frames using the API defined in the 'dplyr' package, as
+                well as provides tidy interfaces to a lot of common graph algorithms.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.0
+Imports: tibble, dplyr (>= 0.8.5), igraph, magrittr, utils, rlang, R6, Rcpp, tools, stats, tidyr, pillar
+URL: https://tidygraph.data-imaginist.com, https://github.com/thomasp85/tidygraph
+BugReports: https://github.com/thomasp85/tidygraph/issues
+LinkingTo: Rcpp
+Suggests: network, data.tree, ape, graph, methods, testthat, covr, seriation, netrankr, influenceR, NetSwan
+NeedsCompilation: yes
+Packaged: 2020-05-12 06:17:33 UTC; thomas
+Author: Thomas Lin Pedersen [cre, aut] (<https://orcid.org/0000-0002-5147-4711>)
+Repository: CRAN
+Date/Publication: 2020-05-12 07:30:03 UTC
+Built: R 4.1.0; x86_64-w64-mingw32; 2021-07-11 07:18:23 UTC; windows
+
+------------------------------------------------------------
+Package: tidyverse
+Title: Easily Install and Load the 'Tidyverse'
+Version: 1.3.1
+Authors@R: c(person(given = "Hadley", family = "Wickham", role = c("aut", "cre"), email = "hadley@rstudio.com"), person(given = "RStudio", role
+                = c("cph", "fnd")))
+Description: The 'tidyverse' is a set of packages that work in harmony because they share common data representations and 'API' design. This
+                package is designed to make it easy to install and load multiple 'tidyverse' packages in a single step. Learn more about the
+                'tidyverse' at <https://www.tidyverse.org>.
+License: MIT + file LICENSE
+URL: https://tidyverse.tidyverse.org, https://github.com/tidyverse/tidyverse
+BugReports: https://github.com/tidyverse/tidyverse/issues
+Depends: R (>= 3.3)
+Imports: broom (>= 0.7.6), cli (>= 2.4.0), crayon (>= 1.4.1), dbplyr (>= 2.1.1), dplyr (>= 1.0.5), dtplyr (>= 1.1.0), forcats (>= 0.5.1),
+                googledrive (>= 1.0.1), googlesheets4 (>= 0.3.0), ggplot2 (>= 3.3.3), haven (>= 2.3.1), hms (>= 1.0.0), httr (>= 1.4.2),
+                jsonlite (>= 1.7.2), lubridate (>= 1.7.10), magrittr (>= 2.0.1), modelr (>= 0.1.8), pillar (>= 1.6.0), purrr (>= 0.3.4), readr
+                (>= 1.4.0), readxl (>= 1.3.1), reprex (>= 2.0.0), rlang (>= 0.4.10), rstudioapi (>= 0.13), rvest (>= 1.0.0), stringr (>=
+                1.4.0), tibble (>= 3.1.0), tidyr (>= 1.1.3), xml2 (>= 1.3.2)
+Suggests: covr, feather, glue, knitr, rmarkdown, testthat
+VignetteBuilder: knitr
+Encoding: UTF-8
+RoxygenNote: 7.1.1
+Config/Needs/Website: tidyverse/tidytemplate
+NeedsCompilation: no
+Packaged: 2021-04-15 12:33:12 UTC; hadley
+Author: Hadley Wickham [aut, cre], RStudio [cph, fnd]
+Maintainer: Hadley Wickham <hadley@rstudio.com>
+Repository: CRAN
+Date/Publication: 2021-04-15 13:20:02 UTC
+Built: R 4.1.0; ; 2021-07-11 07:19:55 UTC; windows
+
+------------------------------------------------------------
+Package: igraph
+Version: 1.2.6
+Title: Network Analysis and Visualization
+Author: See AUTHORS file.
+Maintainer: Gábor Csárdi <csardi.gabor@gmail.com>
+Description: Routines for simple graphs and network analysis. It can handle large graphs very well and provides functions for generating random
+                and regular graphs, graph visualization, centrality methods and much more.
+Depends: methods
+Imports: graphics, grDevices, magrittr, Matrix, pkgconfig (>= 2.0.0), stats, utils
+Suggests: ape, digest, graph, igraphdata, rgl, scales, stats4, tcltk, testthat, withr
+License: GPL (>= 2)
+URL: https://igraph.org
+SystemRequirements: gmp (optional), libxml2 (optional), glpk (optional)
+BugReports: https://github.com/igraph/igraph/issues
+Encoding: UTF-8
+RoxygenNote: 7.1.1
+Collate: 'adjacency.R' 'auto.R' 'assortativity.R' 'attributes.R' 'basic.R' 'bipartite.R' 'centrality.R' 'centralization.R' 'cliques.R' .....
+NeedsCompilation: yes
+Packaged: 2020-10-06 10:36:22 UTC; gaborcsardi
+Repository: CRAN
+Date/Publication: 2020-10-06 12:40:05 UTC
+Built: R 4.1.0; i386-w64-mingw32; 2021-07-11 01:07:43 UTC; windows
+
+------------------------------------------------------------
